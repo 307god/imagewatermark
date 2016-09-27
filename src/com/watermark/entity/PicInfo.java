@@ -1,4 +1,4 @@
-package com.watermark;
+package com.watermark.entity;
 
 /**
  * Created by sunnylinner on 2016/9/26.

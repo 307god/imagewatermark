@@ -13,7 +13,7 @@
     <constant name="struts.multipart.saveDir" value="/tmpUpload" />
 
     <package name="default" extends="struts-default">
-        <action name="watermark" class="com.watermark.WaterMarkAction" method="watermark">
+        <action name="watermark" class="com.watermark.action.WaterMarkAction" method="watermark">
             <param name="uploadPath">/images</param>
             <result name="success">watermark.jsp</result>
         </action>

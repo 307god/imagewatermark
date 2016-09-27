@@ -1,4 +1,4 @@
-package com.watermark;
+package com.watermark.service;
 
 import java.io.*;
 

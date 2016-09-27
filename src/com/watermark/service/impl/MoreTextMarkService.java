@@ -1,7 +1,8 @@
-package com.watermark;
+package com.watermark.service.impl;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import com.watermark.service.MarkService;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,14 +15,13 @@ import java.io.OutputStream;
 /**
  * Created by sunnylinner on 2016/9/27.
  */
-public class MoreImageMarkService implements MarkService{
+public class MoreTextMarkService implements MarkService {
 
     @Override
-    public String watermark(File image, String imageFileName, String uploadPath, String realUploadPath) {
+    public String watermark(File image, String imageFileName,
+                            String uploadPath, String realUploadPath) {
         String logoFileName = "logo_" + imageFileName;
         OutputStream os =null;
-
-        String logoPath = realUploadPath + "/" + LOGO;
 
         try {
             Image image1 = ImageIO.read(image);
@@ -34,12 +34,11 @@ public class MoreImageMarkService implements MarkService{
             Graphics2D g = bufferedImage.createGraphics();
 
             g.drawImage(image1, 0, 0, width, height, null);
+            g.setFont(new Font(FONT_NAME, FONT_STYLE, FONT_SIZE));
+            g.setColor(FONT_COLOR);
 
-            File logo = new File(logoPath);
-            Image imageLogo = ImageIO.read(logo);
-
-            int width1 = imageLogo.getWidth(null);
-            int height1 = imageLogo.getHeight(null);
+            int width1 = FONT_SIZE*getTextLength(MARK_TEXT);
+            int height1 = FONT_SIZE;
 
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, ALPHA));
 
@@ -50,7 +49,7 @@ public class MoreImageMarkService implements MarkService{
 
             while (x < width*1.5){
                 while (y < height*1.5){
-                    g.drawImage(imageLogo, x, y, null);
+                    g.drawString(MARK_TEXT, x, y);
 
                     y +=height1 + YMOVE;
                 }
@@ -77,5 +76,19 @@ public class MoreImageMarkService implements MarkService{
         }
 
         return uploadPath + "/" + logoFileName;
+    }
+
+    private int getTextLength(String text){
+        int length = text.length();
+
+        for(int i = 0; i < text.length(); i++){
+            String s = String.valueOf(text.charAt(i));
+            if (s.getBytes().length > 1){
+                length++;
+            }
+        }
+
+        length = length%2==0 ? length/2: length/2+1;
+        return length;
     }
 }

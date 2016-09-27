@@ -1,7 +1,8 @@
-package com.watermark;
+package com.watermark.service.impl;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import com.watermark.service.MarkService;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -20,7 +21,7 @@ import java.io.OutputStream;
  * 创建图片编码工具类
  * 使用图像编码工具类，输出缓存图像到目标文件
  */
-public class TextMarkService implements MarkService{
+public class TextMarkService implements MarkService {
 
     @Override
     public String watermark(File image, String imageFileName,

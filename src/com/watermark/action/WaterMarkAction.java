@@ -1,7 +1,13 @@
-package com.watermark;
+package com.watermark.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import com.watermark.entity.PicInfo;
+import com.watermark.service.*;
+import com.watermark.service.impl.ImageMarkService;
+import com.watermark.service.impl.MoreImageMarkService;
+import com.watermark.service.impl.MoreTextMarkService;
+import com.watermark.service.impl.TextMarkService;
 import org.apache.struts2.ServletActionContext;
 
 import java.io.File;

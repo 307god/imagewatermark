@@ -1,7 +1,8 @@
-package com.watermark;
+package com.watermark.service.impl;
 
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import com.watermark.service.MarkService;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -14,7 +15,7 @@ import java.io.OutputStream;
 /**
  * Created by sunnylinner on 2016/9/26.
  */
-public class ImageMarkService implements MarkService{
+public class ImageMarkService implements MarkService {
 
     @Override
     public String watermark(File image, String imageFileName,
